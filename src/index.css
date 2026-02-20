@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --accent-color: #39FF14;
+    
+    --background: 0 0% 4%;
+    --foreground: 0 0% 95%;
+
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 120 100% 56%;
+    --primary-foreground: 0 0% 4%;
+
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 95%;
+
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 55%;
+
+    --accent: 120 100% 56%;
+    --accent-foreground: 0 0% 4%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 95%;
+
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 120 100% 56%;
+
+    --radius: 0.75rem;
+
+    --neon: 120 100% 56%;
+    --neon-glow: 0 0 10px hsl(120 100% 56%), 0 0 20px hsl(120 100% 56% / 0.5), 0 0 40px hsl(120 100% 56% / 0.3);
+    --neon-glow-strong: 0 0 10px hsl(120 100% 56%), 0 0 30px hsl(120 100% 56% / 0.6), 0 0 60px hsl(120 100% 56% / 0.4), 0 0 100px hsl(120 100% 56% / 0.2);
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(57, 255, 20, 0.15);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+
+    --sidebar-background: 0 0% 6%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 120 100% 56%;
+    --sidebar-primary-foreground: 0 0% 4%;
+    --sidebar-accent: 0 0% 12%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 0 0% 15%;
+    --sidebar-ring: 120 100% 56%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Orbitron', sans-serif;
+  }
+}
+
+@layer components {
+  .glass-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(16px);
+    box-shadow: var(--glass-shadow);
+    border-radius: var(--radius);
+  }
+
+  .neon-border {
+    border: 1px solid hsl(var(--neon));
+    box-shadow: var(--neon-glow);
+  }
+
+  .neon-text {
+    color: hsl(var(--neon));
+    text-shadow: 0 0 10px hsl(120 100% 56% / 0.8), 0 0 20px hsl(120 100% 56% / 0.4);
+  }
+
+  .neon-button {
+    @apply bg-primary text-primary-foreground font-heading font-semibold tracking-wider uppercase;
+    box-shadow: var(--neon-glow);
+    transition: all 0.3s ease;
+  }
+  .neon-button:hover {
+    box-shadow: var(--neon-glow-strong);
+    transform: translateY(-2px);
+  }
+
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24;
+  }
+
+  .profile-glow {
+    border: 3px solid hsl(var(--neon));
+    box-shadow: var(--neon-glow-strong);
+    border-radius: 50%;
+  }
+
+  .progress-neon {
+    background: linear-gradient(90deg, hsl(120 100% 56%), hsl(120 100% 40%));
+    box-shadow: 0 0 8px hsl(120 100% 56% / 0.6);
+    border-radius: 9999px;
+    height: 100%;
+    transition: width 1s ease-out;
+  }
+
+  .grid-pattern {
+    background-image: 
+      linear-gradient(rgba(57, 255, 20, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(57, 255, 20, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+}
+
+@layer utilities {
+  .animate-glow-pulse {
+    animation: glow-pulse 2s ease-in-out infinite;
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 10px hsl(120 100% 56% / 0.4), 0 0 20px hsl(120 100% 56% / 0.2); }
+  50% { box-shadow: 0 0 20px hsl(120 100% 56% / 0.8), 0 0 40px hsl(120 100% 56% / 0.4), 0 0 60px hsl(120 100% 56% / 0.2); }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out forwards;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(0 0% 4%);
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(120 100% 56% / 0.3);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(120 100% 56% / 0.5);
+}
